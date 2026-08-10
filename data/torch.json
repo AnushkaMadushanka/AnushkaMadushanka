@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "hops": [
+    {
+      "n": 0,
+      "city": "Colombo",
+      "region": "Western",
+      "country": "LK",
+      "lat": 6.93,
+      "lon": 79.86,
+      "km": 0,
+      "totalKm": 0,
+      "at": "2026-08-10T00:00:00.000Z"
+    }
+  ]
+}

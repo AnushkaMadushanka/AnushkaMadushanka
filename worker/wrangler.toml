@@ -1,0 +1,23 @@
+name = "torch"
+main = "src/index.ts"
+compatibility_date = "2026-08-01"
+
+[vars]
+REPO_OWNER = "AnushkaMadushanka"
+REPO_NAME = "AnushkaMadushanka"
+REPO_BRANCH = "main"
+PROFILE_URL = "https://github.com/AnushkaMadushanka"
+# Must match the link in README.md.
+CLAIM_URL = "https://torch.anushkamadushanka1998.workers.dev/claim"
+DAILY_HOP_CAP = "200"
+CLAIM_COOLDOWN_HOURS = "24"
+
+# npx wrangler kv namespace create TORCH_KV
+[[kv_namespaces]]
+binding = "TORCH_KV"
+id = "dc6f8f14a340441a9accefb48360e889"
+
+# Secrets (npx wrangler secret put NAME):
+#   GITHUB_APP_ID
+#   GITHUB_APP_PRIVATE_KEY   PKCS#8 — see note in src/github.ts
+#   IP_SALT                  any long random string
