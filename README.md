@@ -2,8 +2,7 @@
 
 Full-stack engineer, nine years — the last five remote with Australian teams.
 Most recently the only mobile developer on Uplist, Ray White's pre-market
-real-estate app, now testing with 93 agents across 10 offices. React Native and
-Node up front, Postgres and AWS behind it. Based in Colombo; open to remote
+real-estate app, now testing with 93 agents across 10 offices. Based in Colombo; open to remote
 roles and on-site.
 
 Most of those nine years is production code I can't link to. What's public here
