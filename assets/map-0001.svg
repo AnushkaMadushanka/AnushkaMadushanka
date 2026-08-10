@@ -11,9 +11,10 @@
 <path class="arc" d="M829.855,256.87L829.859,256.874L829.862,256.878L829.865,256.882L829.869,256.887L829.872,256.891L829.875,256.895L829.879,256.899L829.882,256.903L829.885,256.907L829.889,256.912L829.892,256.916L829.895,256.92L829.899,256.924L829.902,256.928L829.905,256.933L829.909,256.937L829.912,256.941L829.915,256.945L829.919,256.949L829.922,256.953L829.925,256.958L829.929,256.962L829.932,256.966L829.935,256.97L829.939,256.974L829.942,256.978L829.945,256.983L829.949,256.987L829.952,256.991L829.955,256.995L829.959,256.999L829.962,257.003L829.965,257.008L829.969,257.012L829.972,257.016L829.975,257.02L829.979,257.024L829.982,257.029L829.985,257.033L829.989,257.037L829.992,257.041L829.995,257.045L829.999,257.049L830.002,257.054L830.005,257.058L830.009,257.062L830.012,257.066L830.015,257.07L830.019,257.074L830.022,257.079L830.025,257.083L830.029,257.087L830.032,257.091L830.035,257.095L830.039,257.099L830.042,257.104L830.045,257.108L830.049,257.112L830.052,257.116L830.055,257.12L830.059,257.125L830.062,257.129L830.065,257.133L830.069,257.137" fill="none" stroke-width="1.4" stroke-opacity="0.2" stroke-linecap="round"/>
 <circle class="dot" cx="829.9" cy="256.9" r="2"/>
 <rect x="0" y="0" width="620" height="560" fill="url(#wash)"/>
-<text class="eyebrow" x="56" y="228" font-size="15" letter-spacing="3.5">THE TORCH IS IN</text>
-<text class="city" x="56" y="282" font-size="46" font-weight="700">Maharagama</text>
-<text class="meta" x="56" y="318" font-size="17">Sri Lanka  ·  12 km  ·  2 hands</text>
+<text class="eyebrow" x="56" y="213" font-size="15" letter-spacing="3.5">THE TORCH IS IN</text>
+<text class="city" x="56" y="267" font-size="46" font-weight="700">Maharagama</text>
+<text class="meta" x="56" y="303" font-size="17">Sri Lanka  ·  12 km  ·  2 hands</text>
+<text class="eyebrow" x="56" y="337" font-size="15">a torch passed from stranger to stranger, one city at a time</text>
 
 <circle class="flame halo" cx="830.1" cy="257.1" r="10" fill-opacity="0.18"/><circle class="flame" cx="830.1" cy="257.1" r="4.5"/><circle class="wick" cx="830.1" cy="257.1" r="1.8" fill-opacity="0.85"/>
 </svg>

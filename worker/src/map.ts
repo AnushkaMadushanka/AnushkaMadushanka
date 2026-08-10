@@ -153,14 +153,14 @@ export function renderMap(data: TorchData): string {
 
   // Optically centred: the block is measured, then placed, so adding or losing
   // the Moon bar never leaves a dead band above or below it.
-  const top = Math.round((HEIGHT - (hasMoon ? 170 : 105)) / 2);
+  const top = Math.round((HEIGHT - (hasMoon ? 200 : 135)) / 2);
 
   const moon = hasMoon
-    ? `<text class="meta" x="56" y="${top + 140}" font-size="15">${moonPct.toFixed(
+    ? `<text class="meta" x="56" y="${top + 174}" font-size="15">${moonPct.toFixed(
         1,
       )}% of the way to the Moon</text>
-<rect class="track" x="56" y="${top + 152}" width="300" height="5" rx="2.5"/>
-<rect class="pill" x="56" y="${top + 152}" width="${fixed(
+<rect class="track" x="56" y="${top + 186}" width="300" height="5" rx="2.5"/>
+<rect class="pill" x="56" y="${top + 186}" width="${fixed(
         Math.min(300, (moonPct / 100) * 300),
       )}" height="5" rx="2.5"/>`
     : "";
@@ -187,6 +187,7 @@ ${dots}
 <text class="eyebrow" x="56" y="${top}" font-size="15" letter-spacing="3.5">THE TORCH IS IN</text>
 <text class="city" x="56" y="${top + 54}" font-size="46" font-weight="700">${esc(current.city)}</text>
 <text class="meta" x="56" y="${top + 90}" font-size="17">${esc(meta)}</text>
+<text class="eyebrow" x="56" y="${top + 124}" font-size="15">a torch passed from stranger to stranger, one city at a time</text>
 ${moon}
 ${flame}
 </svg>
@@ -205,11 +206,11 @@ export const BUTTON_PATH = "assets/take-the-torch.svg";
  * Content never changes, so git stores the blob once however many hops land.
  */
 export function renderButton(): string {
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 64" width="1200" height="64" role="img" aria-label="Take the torch">
-<title>Take the torch</title>
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 64" width="1200" height="64" role="img" aria-label="Take the torch to my city">
+<title>Take the torch to my city</title>
 <style>.pill{fill:#f04e23}.pill-text{fill:#ffffff}@media(prefers-color-scheme:dark){.pill{fill:#ff7b3d}.pill-text{fill:#0d1117}}text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}</style>
-<rect class="pill" x="474" y="8" width="252" height="48" rx="24"/>
-<text class="pill-text" x="600" y="39" font-size="18" font-weight="600" text-anchor="middle">take the torch  →</text>
+<rect class="pill" x="440" y="8" width="320" height="48" rx="24"/>
+<text class="pill-text" x="600" y="39" font-size="18" font-weight="600" text-anchor="middle">take the torch to my city  →</text>
 </svg>
 `;
 }

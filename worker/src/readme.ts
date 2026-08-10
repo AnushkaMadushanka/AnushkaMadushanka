@@ -60,7 +60,7 @@ function mapPicture(data: TorchData, env: Env): string | null {
 /** Same canvas width as the map, so the pill lines up under the headline. */
 function buttonPicture(data: TorchData, env: Env): string | null {
   if (!data.map) return null;
-  return `<a href="${env.CLAIM_URL}"><img alt="Take the torch" src="${raw(
+  return `<a href="${env.CLAIM_URL}"><img alt="Take the torch to my city" src="${raw(
     env,
     BUTTON_PATH,
   )}" width="100%"></a>`;

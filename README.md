@@ -2,7 +2,7 @@
 
 <a href="https://torch.anushkamadushanka1998.workers.dev/claim"><img alt="World map of the torch's route, currently in Maharagama, Sri Lanka" src="https://raw.githubusercontent.com/AnushkaMadushanka/AnushkaMadushanka/main/assets/map-0001.svg" width="100%"></a>
 
-<a href="https://torch.anushkamadushanka1998.workers.dev/claim"><img alt="Take the torch" src="https://raw.githubusercontent.com/AnushkaMadushanka/AnushkaMadushanka/main/assets/take-the-torch.svg" width="100%"></a>
+<a href="https://torch.anushkamadushanka1998.workers.dev/claim"><img alt="Take the torch to my city" src="https://raw.githubusercontent.com/AnushkaMadushanka/AnushkaMadushanka/main/assets/take-the-torch.svg" width="100%"></a>
 
 <details>
 <summary>Additional information</summary>
