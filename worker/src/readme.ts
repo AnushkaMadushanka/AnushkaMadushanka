@@ -18,6 +18,18 @@ function place(hop: Hop): string {
   return `${hop.city}, ${country}`;
 }
 
+const HOW_IT_WORKS = `**How it works**
+
+One person holds the torch at a time. Press the button and Cloudflare's edge
+network resolves your approximate city from the request itself — no form, no
+sign-in, nothing to type. A Worker measures the great-circle distance from the
+last holder to you, redraws the map, commits it straight to this repository and
+sends you back here, all in a second or two.
+
+There is no CI, no database and no build step: the Worker is the whole
+application, about 150 lines of it, and the map above was drawn by whoever
+clicked before you. Source is in [\`worker/\`](worker/).`;
+
 const DISCLOSURE =
   "<sub>City from Cloudflare's edge, rounded to ~1 km. Nothing else recorded.</sub>";
 
@@ -81,11 +93,10 @@ export function renderBlock(data: TorchData, env: Env): string {
   }
 
   // Everything that is not the map or the button lives behind one summary, so
-  // the page is two images and a disclosure line at rest.
+  // the page is two images and a single line of text at rest.
   const detail = [
-    `**The torch is in ${place(current)}** — ${stats.join(" · ")}`,
+    HOW_IT_WORKS,
     previous.length ? `**Where it has been**\n\n${lines.join("\n")}` : null,
-    `[Take the torch →](${env.CLAIM_URL})`,
     DISCLOSURE,
   ].filter((part): part is string => Boolean(part));
 

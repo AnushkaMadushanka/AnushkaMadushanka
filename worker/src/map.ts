@@ -199,17 +199,17 @@ export const mapPath = (n: number): string =>
 export const BUTTON_PATH = "assets/take-the-torch.svg";
 
 /**
- * Its own file rather than part of the map, and the same 1200-unit canvas so
- * that at width="100%" the pill lands on exactly the same left margin as the
- * headline above it. Content never changes, so the blob is identical on every
- * commit and git stores it once.
+ * Its own file rather than part of the map, on the same 1200-unit canvas so it
+ * scales in lockstep with it — centring the pill within that canvas is what
+ * centres it under the map, since markdown gives no way to centre an image.
+ * Content never changes, so git stores the blob once however many hops land.
  */
 export function renderButton(): string {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 64" width="1200" height="64" role="img" aria-label="Take the torch">
 <title>Take the torch</title>
 <style>.pill{fill:#f04e23}.pill-text{fill:#ffffff}@media(prefers-color-scheme:dark){.pill{fill:#ff7b3d}.pill-text{fill:#0d1117}}text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}</style>
-<rect class="pill" x="56" y="8" width="252" height="48" rx="24"/>
-<text class="pill-text" x="182" y="39" font-size="18" font-weight="600" text-anchor="middle">take the torch  →</text>
+<rect class="pill" x="474" y="8" width="252" height="48" rx="24"/>
+<text class="pill-text" x="600" y="39" font-size="18" font-weight="600" text-anchor="middle">take the torch  →</text>
 </svg>
 `;
 }
