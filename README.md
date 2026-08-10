@@ -1,8 +1,25 @@
+## Anushka Madushanka
+
+Full-stack engineer, nine years — the last five remote with Australian teams.
+Most recently the only mobile developer on Uplist, Ray White's pre-market
+real-estate app, now testing with 93 agents across 10 offices. React Native and
+Node up front, Postgres and AWS behind it. Based in Colombo; open to remote
+roles and on-site.
+
+Most of those nine years is production code I can't link to. What's public here
+is side projects and tools.
+
+[Portfolio](https://anushkamadushanka.github.io) · [LinkedIn](https://www.linkedin.com/in/anushka-madushanka/) · [anushkamadushanka1998@gmail.com](mailto:anushkamadushanka1998@gmail.com)
+
+---
+
 <!-- torch:start -->
 
 <a href="https://torch.anushkamadushanka1998.workers.dev/claim"><img alt="World map of the torch's route, currently in Maharagama, Sri Lanka" src="https://raw.githubusercontent.com/AnushkaMadushanka/AnushkaMadushanka/main/assets/map-0001.svg" width="100%"></a>
 
 <a href="https://torch.anushkamadushanka1998.workers.dev/claim"><img alt="Take the torch to my city" src="https://raw.githubusercontent.com/AnushkaMadushanka/AnushkaMadushanka/main/assets/take-the-torch.svg" width="100%"></a>
+
+<p align="center"><sub>Pressing it runs a Cloudflare Worker that geolocates you, redraws this map and commits it to this repo — about a second, no CI.</sub></p>
 
 <details>
 <summary>Additional information</summary>

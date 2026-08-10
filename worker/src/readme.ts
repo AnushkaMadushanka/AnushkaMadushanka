@@ -100,9 +100,17 @@ export function renderBlock(data: TorchData, env: Env): string {
     DISCLOSURE,
   ].filter((part): part is string => Boolean(part));
 
+  // The one sentence that makes the map legible as a working system rather than
+  // a picture. Behind the summary it was invisible to anyone who did not click,
+  // which is most people, which wasted the entire point.
+  const pitch = data.map
+    ? `<p align="center"><sub>Pressing it runs a Cloudflare Worker that geolocates you, redraws this map and commits it to this repo — about a second, no CI.</sub></p>`
+    : null;
+
   const parts = [
     mapPicture(data, env),
     buttonPicture(data, env),
+    pitch,
     `<details>\n<summary>Additional information</summary>\n\n${detail.join(
       "\n\n",
     )}\n\n</details>`,
