@@ -20,6 +20,8 @@ export interface Hop extends Place {
 export interface TorchData {
   version: 1;
   hops: Hop[];
+  /** Map file currently referenced by the README, so it can be replaced. */
+  map?: string;
 }
 
 const toRad = (deg: number) => (deg * Math.PI) / 180;

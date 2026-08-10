@@ -22,7 +22,24 @@ const DISCLOSURE =
   "Coordinates are rounded to about a kilometre before they are written down, " +
   "and nothing else about you is recorded.</sub>";
 
-/** Phase 1 is text only. The map lands in phase 2 above the heading. */
+/**
+ * Absolute rather than relative, because GitHub's image proxy keys its cache on
+ * the full URL — and because the filename carries the hop number, every claim
+ * produces a URL the proxy has never seen and therefore cannot serve stale.
+ */
+function raw(env: Env, path: string): string {
+  return `https://raw.githubusercontent.com/${env.REPO_OWNER}/${env.REPO_NAME}/${env.REPO_BRANCH}/${path}`;
+}
+
+function mapPicture(data: TorchData, env: Env): string | null {
+  if (!data.map) return null;
+  const current = data.hops[data.hops.length - 1];
+  const alt = `World map of the torch's route, currently in ${place(current)}`;
+
+  // The map is the button — clicking it takes the torch.
+  return `<a href="${env.CLAIM_URL}"><img alt="${alt}" src="${raw(env, data.map)}" width="100%"></a>`;
+}
+
 export function renderBlock(data: TorchData, env: Env): string {
   const hops = data.hops;
   const current = hops[hops.length - 1];
@@ -44,6 +61,7 @@ export function renderBlock(data: TorchData, env: Env): string {
     .join("\n");
 
   const parts = [
+    mapPicture(data, env),
     `### 🔥 The torch is in **${place(current)}**`,
     summary,
     `[**Take the torch →**](${env.CLAIM_URL})`,

@@ -8,6 +8,7 @@ import {
   type TorchData,
 } from "./geo.ts";
 import { commit, installationToken, readFile } from "./github.ts";
+import { mapPath, renderMap } from "./map.ts";
 import { check, consume } from "./ratelimit.ts";
 import { renderBlock, spliceReadme } from "./readme.ts";
 
@@ -92,15 +93,22 @@ async function handleClaim(request: Request, env: Env): Promise<Response> {
       at: new Date().toISOString(),
     };
 
-    const next: TorchData = { ...data, hops: [...data.hops, hop] };
+    const map = mapPath(hop.n);
+    const next: TorchData = { ...data, hops: [...data.hops, hop], map };
+
+    // The previous map is dropped from the tree in the same commit. Git history
+    // keeps it; the working tree stays at exactly one.
+    const stale = data.map ? [data.map] : [];
+
     const landed = await commit(
       env,
       token,
       [
         { path: DATA_PATH, content: `${JSON.stringify(next, null, 2)}\n` },
         { path: README_PATH, content: spliceReadme(readme, renderBlock(next, env)) },
+        { path: map, content: renderMap(next) },
       ],
-      [],
+      stale,
       `🔥 the torch moves to ${label(hop)} (+${Math.round(km)} km)`,
     );
 

@@ -5,8 +5,9 @@
  *   node --experimental-strip-types scripts/dryrun.ts
  *   node --experimental-strip-types scripts/dryrun.ts --hops 40
  */
-import { readFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { haversineKm, type Hop, type Place, type TorchData } from "../src/geo.ts";
+import { mapPath, renderMap } from "../src/map.ts";
 import { renderBlock, spliceReadme } from "../src/readme.ts";
 
 const ROOT = new URL("../../", import.meta.url);
@@ -51,7 +52,20 @@ for (let i = 0; i < count; i++) {
 
 const env = {
   CLAIM_URL: "https://torch.example.workers.dev/claim",
+  REPO_OWNER: "AnushkaMadushanka",
+  REPO_NAME: "AnushkaMadushanka",
+  REPO_BRANCH: "main",
 } as Parameters<typeof renderBlock>[1];
+
+data.map = mapPath(data.hops[data.hops.length - 1].n);
+
+const out = new URL("preview/", import.meta.url);
+mkdirSync(out, { recursive: true });
+{
+  const svg = renderMap(data);
+  writeFileSync(new URL("map.svg", out), svg);
+  console.error(`  preview/map.svg  ${(svg.length / 1024).toFixed(1)} KB`);
+}
 
 console.error("\n─── README ───\n");
 console.log(spliceReadme(readme, renderBlock(data, env)));
