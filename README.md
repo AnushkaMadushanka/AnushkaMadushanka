@@ -4,21 +4,20 @@
 
 ### 🔥 The torch is in **Maharagama, Sri Lanka**
 
-Carried **12 km** by **2** pairs of hands — **0.0%** of the way to the Moon.
+**12 km** · **2** hands · [**take it →**](https://torch.anushkamadushanka1998.workers.dev/claim)
 
-[**Take the torch →**](https://torch.anushkamadushanka1998.workers.dev/claim)
-
-<sub>**Before that**</sub>
+<details>
+<summary>Where it has been</summary>
 
 - Colombo, Sri Lanka — 0 km
 
-<sub>Your approximate city comes from Cloudflare's edge network. Coordinates are rounded to about a kilometre before they are written down, and nothing else about you is recorded.</sub>
+</details>
+
+<sub>City from Cloudflare's edge, rounded to ~1 km. Nothing else recorded.</sub>
 
 <!-- torch:end -->
 
 ---
 
-<sub>One person holds the torch at a time. Take it and the route redraws from the
-last holder's city to yours — the whole thing runs in a Cloudflare Worker that
-commits straight to this repo, no CI, about 150 lines. Source is in
-[`worker/`](worker/).</sub>
+<sub>One holder at a time. Click the map, and a Cloudflare Worker redraws the
+route to your city and commits it here — no CI, ~150 lines, in [`worker/`](worker/).</sub>

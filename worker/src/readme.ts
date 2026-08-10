@@ -18,9 +18,13 @@ function place(hop: Hop): string {
 }
 
 const DISCLOSURE =
-  "<sub>Your approximate city comes from Cloudflare's edge network. " +
-  "Coordinates are rounded to about a kilometre before they are written down, " +
-  "and nothing else about you is recorded.</sub>";
+  "<sub>City from Cloudflare's edge, rounded to ~1 km. Nothing else recorded.</sub>";
+
+/**
+ * Below this the percentage rounds to 0.0% and reads as a bug rather than a
+ * statistic, so it stays hidden until it means something.
+ */
+const MOON_VISIBLE_FROM = MOON_KM * 0.01;
 
 /**
  * Absolute rather than relative, because GitHub's image proxy keys its cache on
@@ -46,26 +50,34 @@ export function renderBlock(data: TorchData, env: Env): string {
   const total = current.totalKm;
   const laps = Math.floor(total / LAP_KM);
 
-  let summary =
-    `Carried **${numbers.format(Math.round(total))} km** by ` +
-    `**${hops.length}** ${hops.length === 1 ? "pair of hands" : "pairs of hands"} — ` +
-    `**${((total / MOON_KM) * 100).toFixed(1)}%** of the way to the Moon.`;
+  const stats = [
+    `**${numbers.format(Math.round(total))} km**`,
+    `**${hops.length}** ${hops.length === 1 ? "hand" : "hands"}`,
+  ];
+  if (total >= MOON_VISIBLE_FROM) {
+    stats.push(`**${((total / MOON_KM) * 100).toFixed(1)}%** to the Moon`);
+  }
   if (laps >= 1) {
-    summary += ` That is ${laps} ${laps === 1 ? "lap" : "laps"} of the Earth.`;
+    stats.push(`**${laps}** ${laps === 1 ? "lap" : "laps"} of the Earth`);
   }
 
-  const recent = hops
-    .slice(-6, -1)
-    .reverse()
-    .map((hop) => `- ${place(hop)} — ${numbers.format(Math.round(hop.km))} km`)
-    .join("\n");
+  const previous = hops.slice(0, -1).reverse();
+  const shown = previous.slice(0, 20);
+  const lines = shown.map(
+    (hop) => `- ${place(hop)} — ${numbers.format(Math.round(hop.km))} km`,
+  );
+  if (previous.length > shown.length) {
+    lines.push(`- …and ${previous.length - shown.length} before that`);
+  }
+  const history = previous.length
+    ? `<details>\n<summary>Where it has been</summary>\n\n${lines.join("\n")}\n\n</details>`
+    : null;
 
   const parts = [
     mapPicture(data, env),
     `### 🔥 The torch is in **${place(current)}**`,
-    summary,
-    `[**Take the torch →**](${env.CLAIM_URL})`,
-    recent ? `<sub>**Before that**</sub>\n\n${recent}` : null,
+    `${stats.join(" · ")} · [**take it →**](${env.CLAIM_URL})`,
+    history,
     DISCLOSURE,
   ].filter((part): part is string => Boolean(part));
 
