@@ -2,9 +2,7 @@
 
 <a href="https://torch.anushkamadushanka1998.workers.dev/claim"><img alt="World map of the torch's route, currently in Maharagama, Sri Lanka" src="https://raw.githubusercontent.com/AnushkaMadushanka/AnushkaMadushanka/main/assets/map-0001.svg" width="100%"></a>
 
-### 🔥 The torch is in **Maharagama, Sri Lanka**
-
-**12 km** · **2** hands · [**take it →**](https://torch.anushkamadushanka1998.workers.dev/claim)
+[**Take the torch →**](https://torch.anushkamadushanka1998.workers.dev/claim) — **12 km** · **2** hands
 
 <details>
 <summary>Where it has been</summary>

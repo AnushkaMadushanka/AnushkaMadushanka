@@ -1,5 +1,5 @@
 import { geoInterpolate, geoNaturalEarth1, geoPath } from "d3-geo";
-import type { Hop, TorchData } from "./geo.ts";
+import { MOON_KM, type Hop, type TorchData } from "./geo.ts";
 import {
   GRATICULE_PATH,
   HEIGHT,
@@ -16,7 +16,8 @@ import {
  * SVG read the same signal from the same browser, so the behaviour is identical
  * — but one file is half the bytes, and every byte here is committed forever.
  *
- * Backgrounds match GitHub's own so the map sits flush against the page.
+ * The headline lives in here too. Markdown gives no control over type on a
+ * GitHub profile; a generated image gives all of it.
  */
 const STYLE = `
 .bg{fill:#ffffff}
@@ -27,6 +28,13 @@ const STYLE = `
 .dot{fill:#a39c8d}
 .flame{fill:#f04e23}
 .wick{fill:#ffffff}
+.wash stop{stop-color:#ffffff}
+.eyebrow{fill:#8a8272}
+.city{fill:#1c1a17}
+.meta{fill:#5f594e}
+.pill{fill:#f04e23}
+.pill-text{fill:#ffffff}
+.track{fill:#dcd8d0}
 @media(prefers-color-scheme:dark){
 .bg{fill:#0d1117}
 .graticule{stroke:#161b22}
@@ -36,7 +44,15 @@ const STYLE = `
 .dot{fill:#57606a}
 .flame{fill:#ff7b3d}
 .wick{fill:#0d1117}
+.wash stop{stop-color:#0d1117}
+.eyebrow{fill:#6e7681}
+.city{fill:#e6edf3}
+.meta{fill:#9198a1}
+.pill{fill:#ff7b3d}
+.pill-text{fill:#0d1117}
+.track{fill:#2b323b}
 }
+text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
 .halo{animation:pulse 2.8s ease-in-out infinite}
 @keyframes pulse{0%,100%{r:10px;opacity:.9}50%{r:16px;opacity:.35}}
 @media(prefers-reduced-motion:reduce){.halo{animation:none}}
@@ -48,10 +64,29 @@ const STYLE = `
 const projection = geoNaturalEarth1().scale(SCALE).translate(TRANSLATE).precision(0);
 const path = geoPath(projection);
 
+const regions = new Intl.DisplayNames(["en"], { type: "region" });
+const numbers = new Intl.NumberFormat("en-US");
+
 const project = (hop: Hop): [number, number] =>
   projection([hop.lon, hop.lat]) ?? [0, 0];
 
 const fixed = (n: number) => Number(n.toFixed(1));
+
+/** City names carry apostrophes and ampersands; SVG is XML and will not have it. */
+const esc = (s: string) =>
+  s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+
+function country(code: string): string {
+  try {
+    return regions.of(code) ?? code;
+  } catch {
+    return code;
+  }
+}
 
 /**
  * Great-circle rather than straight: a line drawn between two projected points
@@ -71,6 +106,7 @@ function arc(from: Hop, to: Hop, samples: number): string {
 export function renderMap(data: TorchData): string {
   const hops = data.hops;
   const current = hops[hops.length - 1];
+  const total = current.totalKm;
 
   // Keeps the whole render inside the 10ms budget however long the chain gets.
   const samples = hops.length > 120 ? 16 : hops.length > 40 ? 32 : 64;
@@ -99,24 +135,62 @@ export function renderMap(data: TorchData): string {
     .join("");
 
   const [cx, cy] = project(current);
+  // Drawn after the wash so the flame is never dimmed by its own headline.
   const flame =
     `<circle class="flame halo" cx="${fixed(cx)}" cy="${fixed(cy)}" r="10" fill-opacity="0.18"/>` +
     `<circle class="flame" cx="${fixed(cx)}" cy="${fixed(cy)}" r="4.5"/>` +
     `<circle class="wick" cx="${fixed(cx)}" cy="${fixed(cy)}" r="1.8" fill-opacity="0.85"/>`;
 
-  const label = `The torch is in ${current.city}. ${hops.length} ${
-    hops.length === 1 ? "holder" : "holders"
-  } so far, ${Math.round(current.totalKm)} km travelled.`;
+  const meta = [
+    country(current.country),
+    `${numbers.format(Math.round(total))} km`,
+    `${hops.length} ${hops.length === 1 ? "hand" : "hands"}`,
+  ].join("  ·  ");
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${WIDTH} ${HEIGHT}" width="${WIDTH}" height="${HEIGHT}" role="img" aria-label="${label}">
-<title>${label}</title>
+  // Below 1% the figure rounds to 0.0% and reads as a bug rather than a stat.
+  const moonPct = (total / MOON_KM) * 100;
+  const hasMoon = moonPct >= 1;
+
+  // Optically centred: the block is measured, then placed, so adding or losing
+  // the Moon bar never leaves a dead band above or below it.
+  const top = Math.round((HEIGHT - (hasMoon ? 234 : 182)) / 2);
+  const pillY = top + (hasMoon ? 192 : 140);
+
+  const moon = hasMoon
+    ? `<text class="meta" x="56" y="${top + 140}" font-size="15">${moonPct.toFixed(
+        1,
+      )}% of the way to the Moon</text>
+<rect class="track" x="56" y="${top + 152}" width="300" height="5" rx="2.5"/>
+<rect class="pill" x="56" y="${top + 152}" width="${fixed(
+        Math.min(300, (moonPct / 100) * 300),
+      )}" height="5" rx="2.5"/>`
+    : "";
+
+  const label = `The torch is in ${current.city}, ${country(current.country)}. ${
+    hops.length
+  } ${hops.length === 1 ? "holder" : "holders"} so far, ${numbers.format(
+    Math.round(total),
+  )} km travelled.`;
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${WIDTH} ${HEIGHT}" width="${WIDTH}" height="${HEIGHT}" role="img" aria-label="${esc(label)}">
+<title>${esc(label)}</title>
 <style>${STYLE}</style>
+<defs><linearGradient class="wash" id="wash" x1="0" x2="1" y1="0" y2="0">
+<stop offset="0" stop-opacity="0.96"/><stop offset="0.5" stop-opacity="0.82"/><stop offset="1" stop-opacity="0"/>
+</linearGradient></defs>
 <rect class="bg" width="${WIDTH}" height="${HEIGHT}"/>
 <path class="graticule" d="${GRATICULE_PATH}" fill="none" stroke-width="0.6"/>
 <path class="land" d="${LAND_PATH}"/>
 <path class="edge" d="${SPHERE_PATH}" fill="none" stroke-width="1"/>
 ${arcs.join("")}
 ${dots}
+<rect x="0" y="0" width="620" height="${HEIGHT}" fill="url(#wash)"/>
+<text class="eyebrow" x="56" y="${top}" font-size="15" letter-spacing="3.5">THE TORCH IS IN</text>
+<text class="city" x="56" y="${top + 54}" font-size="46" font-weight="700">${esc(current.city)}</text>
+<text class="meta" x="56" y="${top + 90}" font-size="17">${esc(meta)}</text>
+${moon}
+<g><rect class="pill" x="56" y="${pillY}" width="176" height="42" rx="21"/>
+<text class="pill-text" x="144" y="${pillY + 27}" font-size="17" font-weight="600" text-anchor="middle">take it  →</text></g>
 ${flame}
 </svg>
 `;

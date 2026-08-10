@@ -2,6 +2,10 @@ name = "torch"
 main = "src/index.ts"
 compatibility_date = "2026-08-01"
 
+# Every deployment would otherwise get its own public URL that can claim the
+# torch, which is a second front door nobody asked for.
+preview_urls = false
+
 [vars]
 REPO_OWNER = "AnushkaMadushanka"
 REPO_NAME = "AnushkaMadushanka"

@@ -73,10 +73,15 @@ export function renderBlock(data: TorchData, env: Env): string {
     ? `<details>\n<summary>Where it has been</summary>\n\n${lines.join("\n")}\n\n</details>`
     : null;
 
+  // The image carries the headline and the stats. Everything here is either a
+  // fallback for when images do not load, or detail the image should not hold.
   const parts = [
     mapPicture(data, env),
-    `### 🔥 The torch is in **${place(current)}**`,
-    `${stats.join(" · ")} · [**take it →**](${env.CLAIM_URL})`,
+    data.map
+      ? `[**Take the torch →**](${env.CLAIM_URL}) — ${stats.join(" · ")}`
+      : `### 🔥 The torch is in **${place(current)}**\n\n${stats.join(
+          " · ",
+        )} · [**take it →**](${env.CLAIM_URL})`,
     history,
     DISCLOSURE,
   ].filter((part): part is string => Boolean(part));
