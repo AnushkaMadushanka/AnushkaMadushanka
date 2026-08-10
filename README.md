@@ -2,16 +2,22 @@
 
 <a href="https://torch.anushkamadushanka1998.workers.dev/claim"><img alt="World map of the torch's route, currently in Maharagama, Sri Lanka" src="https://raw.githubusercontent.com/AnushkaMadushanka/AnushkaMadushanka/main/assets/map-0001.svg" width="100%"></a>
 
-[**Take the torch →**](https://torch.anushkamadushanka1998.workers.dev/claim) — **12 km** · **2** hands
+<a href="https://torch.anushkamadushanka1998.workers.dev/claim"><img alt="Take the torch" src="https://raw.githubusercontent.com/AnushkaMadushanka/AnushkaMadushanka/main/assets/take-the-torch.svg" width="100%"></a>
 
 <details>
-<summary>Where it has been</summary>
+<summary>Additional information</summary>
+
+**The torch is in Maharagama, Sri Lanka** — **12 km** · **2** hands
+
+**Where it has been**
 
 - Colombo, Sri Lanka — 0 km
 
-</details>
+[Take the torch →](https://torch.anushkamadushanka1998.workers.dev/claim)
 
 <sub>City from Cloudflare's edge, rounded to ~1 km. Nothing else recorded.</sub>
+
+</details>
 
 <!-- torch:end -->
 

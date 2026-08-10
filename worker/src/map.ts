@@ -153,8 +153,7 @@ export function renderMap(data: TorchData): string {
 
   // Optically centred: the block is measured, then placed, so adding or losing
   // the Moon bar never leaves a dead band above or below it.
-  const top = Math.round((HEIGHT - (hasMoon ? 234 : 182)) / 2);
-  const pillY = top + (hasMoon ? 192 : 140);
+  const top = Math.round((HEIGHT - (hasMoon ? 170 : 105)) / 2);
 
   const moon = hasMoon
     ? `<text class="meta" x="56" y="${top + 140}" font-size="15">${moonPct.toFixed(
@@ -189,8 +188,6 @@ ${dots}
 <text class="city" x="56" y="${top + 54}" font-size="46" font-weight="700">${esc(current.city)}</text>
 <text class="meta" x="56" y="${top + 90}" font-size="17">${esc(meta)}</text>
 ${moon}
-<g><rect class="pill" x="56" y="${pillY}" width="176" height="42" rx="21"/>
-<text class="pill-text" x="144" y="${pillY + 27}" font-size="17" font-weight="600" text-anchor="middle">take it  →</text></g>
 ${flame}
 </svg>
 `;
@@ -198,3 +195,21 @@ ${flame}
 
 export const mapPath = (n: number): string =>
   `assets/map-${String(n).padStart(4, "0")}.svg`;
+
+export const BUTTON_PATH = "assets/take-the-torch.svg";
+
+/**
+ * Its own file rather than part of the map, and the same 1200-unit canvas so
+ * that at width="100%" the pill lands on exactly the same left margin as the
+ * headline above it. Content never changes, so the blob is identical on every
+ * commit and git stores it once.
+ */
+export function renderButton(): string {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 64" width="1200" height="64" role="img" aria-label="Take the torch">
+<title>Take the torch</title>
+<style>.pill{fill:#f04e23}.pill-text{fill:#ffffff}@media(prefers-color-scheme:dark){.pill{fill:#ff7b3d}.pill-text{fill:#0d1117}}text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}</style>
+<rect class="pill" x="56" y="8" width="252" height="48" rx="24"/>
+<text class="pill-text" x="182" y="39" font-size="18" font-weight="600" text-anchor="middle">take the torch  →</text>
+</svg>
+`;
+}

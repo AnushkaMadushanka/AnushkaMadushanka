@@ -1,5 +1,6 @@
 import type { Env } from "./env.ts";
 import { LAP_KM, MOON_KM, type Hop, type TorchData } from "./geo.ts";
+import { BUTTON_PATH } from "./map.ts";
 
 export const START = "<!-- torch:start -->";
 export const END = "<!-- torch:end -->";
@@ -40,8 +41,17 @@ function mapPicture(data: TorchData, env: Env): string | null {
   const current = data.hops[data.hops.length - 1];
   const alt = `World map of the torch's route, currently in ${place(current)}`;
 
-  // The map is the button — clicking it takes the torch.
+  // The map is a claim link too — clicking anywhere on it takes the torch.
   return `<a href="${env.CLAIM_URL}"><img alt="${alt}" src="${raw(env, data.map)}" width="100%"></a>`;
+}
+
+/** Same canvas width as the map, so the pill lines up under the headline. */
+function buttonPicture(data: TorchData, env: Env): string | null {
+  if (!data.map) return null;
+  return `<a href="${env.CLAIM_URL}"><img alt="Take the torch" src="${raw(
+    env,
+    BUTTON_PATH,
+  )}" width="100%"></a>`;
 }
 
 export function renderBlock(data: TorchData, env: Env): string {
@@ -69,21 +79,22 @@ export function renderBlock(data: TorchData, env: Env): string {
   if (previous.length > shown.length) {
     lines.push(`- …and ${previous.length - shown.length} before that`);
   }
-  const history = previous.length
-    ? `<details>\n<summary>Where it has been</summary>\n\n${lines.join("\n")}\n\n</details>`
-    : null;
 
-  // The image carries the headline and the stats. Everything here is either a
-  // fallback for when images do not load, or detail the image should not hold.
+  // Everything that is not the map or the button lives behind one summary, so
+  // the page is two images and a disclosure line at rest.
+  const detail = [
+    `**The torch is in ${place(current)}** — ${stats.join(" · ")}`,
+    previous.length ? `**Where it has been**\n\n${lines.join("\n")}` : null,
+    `[Take the torch →](${env.CLAIM_URL})`,
+    DISCLOSURE,
+  ].filter((part): part is string => Boolean(part));
+
   const parts = [
     mapPicture(data, env),
-    data.map
-      ? `[**Take the torch →**](${env.CLAIM_URL}) — ${stats.join(" · ")}`
-      : `### 🔥 The torch is in **${place(current)}**\n\n${stats.join(
-          " · ",
-        )} · [**take it →**](${env.CLAIM_URL})`,
-    history,
-    DISCLOSURE,
+    buttonPicture(data, env),
+    `<details>\n<summary>Additional information</summary>\n\n${detail.join(
+      "\n\n",
+    )}\n\n</details>`,
   ].filter((part): part is string => Boolean(part));
 
   return `${START}\n\n${parts.join("\n\n")}\n\n${END}`;

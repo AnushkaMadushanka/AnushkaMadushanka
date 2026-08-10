@@ -9,7 +9,7 @@ import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { TorchData } from "../src/geo.ts";
-import { mapPath, renderMap } from "../src/map.ts";
+import { BUTTON_PATH, mapPath, renderButton, renderMap } from "../src/map.ts";
 import { renderBlock, spliceReadme } from "../src/readme.ts";
 
 const ROOT = new URL("../../", import.meta.url);
@@ -40,6 +40,7 @@ if (current.n > 0) {
   writeFileSync(file, renderMap(data));
 }
 
+writeFileSync(new URL(BUTTON_PATH, ROOT), renderButton());
 writeFileSync(dataUrl, `${JSON.stringify(data, null, 2)}\n`);
 writeFileSync(
   readmeUrl,

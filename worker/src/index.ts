@@ -8,7 +8,7 @@ import {
   type TorchData,
 } from "./geo.ts";
 import { commit, installationToken, readFile } from "./github.ts";
-import { mapPath, renderMap } from "./map.ts";
+import { BUTTON_PATH, mapPath, renderButton, renderMap } from "./map.ts";
 import { check, consume } from "./ratelimit.ts";
 import { renderBlock, spliceReadme } from "./readme.ts";
 
@@ -107,6 +107,7 @@ async function handleClaim(request: Request, env: Env): Promise<Response> {
         { path: DATA_PATH, content: `${JSON.stringify(next, null, 2)}\n` },
         { path: README_PATH, content: spliceReadme(readme, renderBlock(next, env)) },
         { path: map, content: renderMap(next) },
+        { path: BUTTON_PATH, content: renderButton() },
       ],
       stale,
       `🔥 the torch moves to ${label(hop)} (+${Math.round(km)} km)`,
