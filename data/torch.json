@@ -11,17 +11,6 @@
       "km": 0,
       "totalKm": 0,
       "at": "2026-08-10T00:00:00.000Z"
-    },
-    {
-      "city": "Maharagama",
-      "region": "Western Province",
-      "country": "LK",
-      "lat": 6.85,
-      "lon": 79.93,
-      "n": 1,
-      "km": 11.8,
-      "totalKm": 11.8,
-      "at": "2026-08-10T07:09:14.087Z"
     }
   ]
 }
