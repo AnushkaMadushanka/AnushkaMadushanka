@@ -1,6 +1,7 @@
 ## Anushka Madushanka
 
-Full-stack engineer, 8+ years — the last five remote with Australian teams.
+Full-stack engineer, shipping production code since 2017 — the last five years
+remote with Australian teams.
 Currently building Uplist, Ray White's pre-market real-estate app, as a
 mobile-focused full-stack engineer in a small cross-functional product team;
 it's in pilot with 93 agents across 10 offices. Before that, nearly four years
