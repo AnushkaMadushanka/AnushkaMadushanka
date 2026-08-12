@@ -1,16 +1,28 @@
 ## Anushka Madushanka
 
-Full-stack engineer, nine years — the last five remote with Australian teams.
-Most recently the only mobile developer on Uplist, Ray White's pre-market
-real-estate app, now testing with 93 agents across 10 offices. Based in Colombo; open to remote
-roles and on-site.
+Full-stack engineer, 8+ years — the last five remote with Australian teams.
+Currently building Uplist, Ray White's pre-market real-estate app, as a
+mobile-focused full-stack engineer in a small cross-functional product team;
+it's in pilot with 93 agents across 10 offices. Before that, nearly four years
+as lead developer at ShopShare.tv. Based in Colombo; open to remote roles and
+on-site.
 
-Most of those nine years is production code I can't link to. What's public here
-is side projects and tools.
+Most of those years are production code I can't link to, so the commercial work
+is written up properly on my portfolio. What's public here is side projects and
+tools.
+
+**Start here**
+
+- [Case studies](https://anushkamadushanka.github.io/#work) — Uplist, ShopShare, ShopRecorder and Shopcast, each written up end to end
+- [mocap-hpe](https://github.com/AnushkaMadushanka/mocap-hpe) — markerless motion capture: a Keras pose-lifting ensemble behind a Node, Postgres and S3 job pipeline
+- [auto-extension-reloader](https://www.npmjs.com/package/auto-extension-reloader) — a webpack plugin I published to npm
+- [itch.io](https://anushka-madushanka.itch.io/) — Unity games, two playable in the browser
 
 [Portfolio](https://anushkamadushanka.github.io) · [LinkedIn](https://www.linkedin.com/in/anushka-madushanka/) · [anushkamadushanka1998@gmail.com](mailto:anushkamadushanka1998@gmail.com)
 
 ---
+
+### Side experiment: pass the torch
 
 <!-- torch:start -->
 
