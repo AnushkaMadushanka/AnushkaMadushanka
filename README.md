@@ -27,7 +27,7 @@ tools.
 
 <!-- torch:start -->
 
-<a href="https://torch.anushkamadushanka1998.workers.dev/claim"><img alt="World map of the torch's route, currently in Maharagama, Sri Lanka" src="https://raw.githubusercontent.com/AnushkaMadushanka/AnushkaMadushanka/main/assets/map-0001.svg" width="100%"></a>
+<a href="https://torch.anushkamadushanka1998.workers.dev/claim"><img alt="World map of the torch's route, currently in Negombo, Sri Lanka" src="https://raw.githubusercontent.com/AnushkaMadushanka/AnushkaMadushanka/main/assets/map-0002.svg" width="100%"></a>
 
 <a href="https://torch.anushkamadushanka1998.workers.dev/claim"><img alt="Take the torch to my city" src="https://raw.githubusercontent.com/AnushkaMadushanka/AnushkaMadushanka/main/assets/take-the-torch.svg" width="100%"></a>
 
@@ -50,6 +50,7 @@ clicked before you. Source is in [`worker/`](worker/).
 
 **Where it has been**
 
+- Maharagama, Sri Lanka — 12 km
 - Colombo, Sri Lanka — 0 km
 
 <sub>City from Cloudflare's edge, rounded to ~1 km. Nothing else recorded.</sub>
