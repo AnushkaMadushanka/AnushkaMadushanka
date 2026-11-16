@@ -33,7 +33,18 @@
       "km": 41.2,
       "totalKm": 53,
       "at": "2026-09-09T03:24:48.558Z"
+    },
+    {
+      "city": "Santa Clara",
+      "region": "California",
+      "country": "US",
+      "lat": 37.39,
+      "lon": -121.96,
+      "n": 3,
+      "km": 14563.1,
+      "totalKm": 14616.1,
+      "at": "2026-11-16T12:48:50.979Z"
     }
   ],
-  "map": "assets/map-0002.svg"
+  "map": "assets/map-0003.svg"
 }
